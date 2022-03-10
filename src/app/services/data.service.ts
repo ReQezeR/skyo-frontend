@@ -43,8 +43,31 @@ export class DataService {
     }));
   }
 
+  addStreamer(streamer: Streamer){
+    console.log(JSON.parse(JSON.stringify(streamer)));
+    
+    this.http.put<any>('/api/object', JSON.parse(JSON.stringify(streamer))).subscribe(result => {
+      console.log(result)
+      const streamer = new Streamer(result);
+      // this.tasks[columnId].push(task);
+      // this.tasksSubject.next(this.tasks);
+      return streamer;
+    });
+  }
+
+  editStreamer(streamer: Streamer){
+    this.http.post<any>('/api/object', streamer).subscribe(result => {
+      const streamer = new Streamer(result);
+      return streamer;
+    });
+  }
+
 
   updateStreamers(data: any){
     this.streamersSubject.next(data);
+  }
+
+  filterStreamers(filters: any){
+    //TODO: 
   }
 }
