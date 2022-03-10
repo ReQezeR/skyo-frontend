@@ -18,10 +18,10 @@ export class StreamersTableComponent implements OnInit {
   dataSource: any;
 
   isLoading = false;
-  totalRows = 1000;
+  totalRows = 0;
   pageSize = 25;
   currentPage = 1;
-  pageSizeOptions: number[] = [25];
+  pageSizeOptions: number[] = [25,50,100];
 
   columns: any[] = [
     'id', 
