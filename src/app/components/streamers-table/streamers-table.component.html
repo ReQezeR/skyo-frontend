@@ -1,0 +1,71 @@
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort (matSortChange)="announceSortChange($event)">
+    <ng-container matColumnDef='id'>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+        <td mat-cell *matCellDef="let element">{{element.id}}</td>
+    </ng-container>
+    <ng-container matColumnDef='channel'>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Channel</th>
+        <td mat-cell *matCellDef="let element">{{element.channel}}</td>
+    </ng-container>
+    <ng-container matColumnDef='watch_time'>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Watch Time</th>
+        <td mat-cell *matCellDef="let element">{{element.watch_time}}</td>
+    </ng-container>
+    <ng-container matColumnDef='stream_time'>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Stream Time</th>
+        <td mat-cell *matCellDef="let element">{{element.stream_time}}</td>
+    </ng-container>
+    <ng-container matColumnDef='peak_viewers'>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Peak viewers</th>
+        <td mat-cell *matCellDef="let element">{{element.peak_viewers}}</td>
+    </ng-container>
+    <ng-container matColumnDef='average_viewers'>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Average viewers</th>
+        <td mat-cell *matCellDef="let element">{{element.average_viewers}}</td>
+    </ng-container>
+    <ng-container matColumnDef='followers'>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Followers</th>
+        <td mat-cell *matCellDef="let element">{{element.followers}}</td>
+    </ng-container>
+    <ng-container matColumnDef='followers_gained'>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Followers gained</th>
+        <td mat-cell *matCellDef="let element">{{element.followers_gained}}</td>
+    </ng-container>
+    <ng-container matColumnDef='views_gained'>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Views gained</th>
+        <td mat-cell *matCellDef="let element">{{element.views_gained}}</td>
+    </ng-container>
+    <ng-container matColumnDef='partnered'>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Partnered</th>
+        <td mat-cell *matCellDef="let element">{{element.partnered}}</td>
+    </ng-container>
+    <ng-container matColumnDef='mature'>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Mature</th>
+        <td mat-cell *matCellDef="let element">{{element.mature}}</td>
+    </ng-container>
+    <ng-container matColumnDef='language'>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Language</th>
+        <td mat-cell *matCellDef="let element">{{element.language}}</td>
+    </ng-container>
+    <ng-container matColumnDef='edit'>
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+            <button mat-icon-button aria-label="Edit data button">
+                <mat-icon>edit</mat-icon>
+            </button>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columns"></tr>
+    <tr mat-row *matRowDef="let row; columns: columns;"></tr>
+</table>
+<mat-paginator
+    showFirstLastButtons
+    [pageSizeOptions]="pageSizeOptions"
+    [length]="totalRows" 
+    [pageIndex]="currentPage" 
+    [pageSize]="pageSize"
+    (page)="pageChanged($event)"
+    aria-label="Select page of periodic elements">
+</mat-paginator>
