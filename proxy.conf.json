@@ -1,0 +1,14 @@
+{
+    "/api": {
+      "target": "http://127.0.0.1:8000/api/v1/",
+      "secure": false,
+      "rejectUnauthorzied": true,
+      "withCredentials": true,
+      "strictSSL": true,
+      "changeOrigin": true,
+      "pathRewrite": {
+        "^/api": ""
+      }
+    }
+  }
+  
