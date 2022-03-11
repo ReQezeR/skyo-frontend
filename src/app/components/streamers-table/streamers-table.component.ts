@@ -6,6 +6,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { tap } from 'rxjs/operators';
+import { MatDialog } from '@angular/material/dialog';
+import { FilterStreamerDialogComponent } from '../filter-streamer-dialog/filter-streamer-dialog.component';
 
 @Component({
   selector: 'app-streamers-table',
@@ -39,7 +41,25 @@ export class StreamersTableComponent implements OnInit {
     'edit'
   ];
 
-  constructor(private dataService: DataService, private _liveAnnouncer: LiveAnnouncer) { }
+  activeFilters = {
+    'id': false,
+    'channel': false, 
+    'watch_time': false, 
+    'stream_time': false, 
+    'peak_viewers': false, 
+    'average_viewers': false, 
+    'followers': false, 
+    'followers_gained': false, 
+    'views_gained': false, 
+    'partnered': false, 
+    'mature': false,
+    'language': false
+  }
+
+  activeFilter = '';
+  activeFilterValue: any;
+
+  constructor(private dataService: DataService, private _liveAnnouncer: LiveAnnouncer, public dialog: MatDialog) { }
 
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -81,16 +101,66 @@ export class StreamersTableComponent implements OnInit {
     console.log({ event });
     this.pageSize = event.pageSize;
     this.currentPage = event.pageIndex;
-
+    
     this.loadData();
   }
 
   loadData(){
     this.isLoading = true;
-    this.dataService.getStreamers(this.currentPage+1, this.pageSize).subscribe(
-      (_)=>{}
-    )
-    console.log("Loading data");
+    if(this.activeFilter != ""){
+      let filter = this.activeFilter+"="+this.activeFilterValue+"&";
+      this.dataService.filterStreamers(this.currentPage+1, this.pageSize, filter).subscribe(
+        (_)=>{}
+      );
+    }else{
+      this.dataService.getStreamers(this.currentPage+1, this.pageSize).subscribe(
+        (_)=>{}
+      );
+    }
+
   }
 
+  filterStreamerDialog(prop_name: string){
+    if(prop_name in this.activeFilters){
+
+      // @ts-ignore
+      if(this.activeFilters[prop_name]==true){
+        // @ts-ignore
+        this.activeFilters[prop_name] = false;
+        this.activeFilter = '';
+        this.activeFilterValue = null;
+        this.currentPage = 0;
+        this.loadData();
+      }
+      else{
+        const dialogRef = this.dialog.open(FilterStreamerDialogComponent,
+          {
+            maxWidth: '1000px',
+            width: '80vw',
+            panelClass: 'custom-dialog-container',
+            data: prop_name
+          }
+        );
+        dialogRef.afterClosed().subscribe(result => {
+          if(result) {
+            if(prop_name in this.activeFilters){
+              if(prop_name != this.activeFilter){
+                // @ts-ignore
+                this.activeFilters[this.activeFilter] = false;
+              }
+              // @ts-ignore
+              this.activeFilters[prop_name] = true;
+              this.activeFilter = prop_name;
+              this.activeFilterValue = result.value;
+            }
+            
+            let filter = prop_name+"="+result.value+"&";
+            this.dataService.filterStreamers(1, this.pageSize, filter).subscribe(
+              (_)=>{}
+            );
+          }
+        });
+      }
+    }
+  }
 }

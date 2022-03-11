@@ -1,51 +1,111 @@
 
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort (matSortChange)="announceSortChange($event)">
     <ng-container matColumnDef='id'>
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            ID
+            <button mat-icon-button class="example-icon add-icon" aria-label="filter data button" (click)="filterStreamerDialog('id'); $event.stopPropagation()" onclick="this.blur()">
+                <mat-icon [ngClass]="activeFilters['id'] ? 'filter-icon-active' : 'filter-icon'">filter_list</mat-icon>
+            </button>
+        </th>
         <td mat-cell *matCellDef="let element">{{element.id}}</td>
     </ng-container>
     <ng-container matColumnDef='channel'>
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Channel</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            Channel
+            <button mat-icon-button class="example-icon add-icon" aria-label="filter data button" (click)="filterStreamerDialog('channel'); $event.stopPropagation()" onclick="this.blur()">
+                <mat-icon [ngClass]="activeFilters['channel'] ? 'filter-icon-active' : 'filter-icon' ">filter_list</mat-icon>
+            </button>
+        </th>
         <td mat-cell *matCellDef="let element">{{element.channel}}</td>
     </ng-container>
     <ng-container matColumnDef='watch_time'>
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Watch Time</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            Watch Time
+            <button mat-icon-button class="example-icon add-icon" aria-label="filter data button" (click)="filterStreamerDialog('watch_time'); $event.stopPropagation()" onclick="this.blur()">
+                <mat-icon [ngClass]="activeFilters['watch_time'] ? 'filter-icon-active' : 'filter-icon' ">filter_list</mat-icon>
+            </button>
+        </th>
         <td mat-cell *matCellDef="let element">{{element.watch_time}}</td>
     </ng-container>
     <ng-container matColumnDef='stream_time'>
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Stream Time</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            Stream Time
+            <button mat-icon-button class="example-icon add-icon" aria-label="filter data button" (click)="filterStreamerDialog('stream_time'); $event.stopPropagation()" onclick="this.blur()">
+                <mat-icon [ngClass]="activeFilters['stream_time'] ? 'filter-icon-active' : 'filter-icon' ">filter_list</mat-icon>
+            </button>
+        </th>
         <td mat-cell *matCellDef="let element">{{element.stream_time}}</td>
     </ng-container>
     <ng-container matColumnDef='peak_viewers'>
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Peak viewers</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            Peak viewers
+            <button mat-icon-button class="example-icon add-icon" aria-label="filter data button" (click)="filterStreamerDialog('peak_viewers'); $event.stopPropagation()" onclick="this.blur()">
+                <mat-icon [ngClass]="activeFilters['peak_viewers'] ? 'filter-icon-active' : 'filter-icon' ">filter_list</mat-icon>
+            </button>
+        </th>
         <td mat-cell *matCellDef="let element">{{element.peak_viewers}}</td>
     </ng-container>
     <ng-container matColumnDef='average_viewers'>
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Average viewers</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            Average viewers
+            <button mat-icon-button class="example-icon add-icon" aria-label="filter data button" (click)="filterStreamerDialog('average_viewers'); $event.stopPropagation()" onclick="this.blur()">
+                <mat-icon [ngClass]="activeFilters['average_viewers'] ? 'filter-icon-active' : 'filter-icon' ">filter_list</mat-icon>
+            </button>
+        </th>
         <td mat-cell *matCellDef="let element">{{element.average_viewers}}</td>
     </ng-container>
     <ng-container matColumnDef='followers'>
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Followers</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            Followers
+            <button mat-icon-button class="example-icon add-icon" aria-label="filter data button" (click)="filterStreamerDialog('followers'); $event.stopPropagation()" onclick="this.blur()">
+                <mat-icon [ngClass]="activeFilters['followers'] ? 'filter-icon-active' : 'filter-icon' ">filter_list</mat-icon>
+            </button>
+        </th>
         <td mat-cell *matCellDef="let element">{{element.followers}}</td>
     </ng-container>
     <ng-container matColumnDef='followers_gained'>
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Followers gained</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            Followers gained
+            <button mat-icon-button class="example-icon add-icon" aria-label="filter data button" (click)="filterStreamerDialog('followers_gained'); $event.stopPropagation()" onclick="this.blur()">
+                <mat-icon [ngClass]="activeFilters['followers_gained'] ? 'filter-icon-active' : 'filter-icon' ">filter_list</mat-icon>
+            </button>
+        </th>
         <td mat-cell *matCellDef="let element">{{element.followers_gained}}</td>
     </ng-container>
     <ng-container matColumnDef='views_gained'>
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Views gained</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            Views gained
+            <button mat-icon-button class="example-icon add-icon" aria-label="filter data button" (click)="filterStreamerDialog('views_gained'); $event.stopPropagation()" onclick="this.blur()">
+                <mat-icon [ngClass]="activeFilters['views_gained'] ? 'filter-icon-active' : 'filter-icon' ">filter_list</mat-icon>
+            </button>
+        </th>
         <td mat-cell *matCellDef="let element">{{element.views_gained}}</td>
     </ng-container>
     <ng-container matColumnDef='partnered'>
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Partnered</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            Partnered
+            <button mat-icon-button class="example-icon add-icon" aria-label="filter data button" (click)="filterStreamerDialog('partnered'); $event.stopPropagation()" onclick="this.blur()">
+                <mat-icon [ngClass]="activeFilters['partnered'] ? 'filter-icon-active' : 'filter-icon' ">filter_list</mat-icon>
+            </button>
+        </th>
         <td mat-cell *matCellDef="let element">{{element.partnered}}</td>
     </ng-container>
     <ng-container matColumnDef='mature'>
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Mature</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            Mature
+            <button mat-icon-button class="example-icon add-icon" aria-label="filter data button" (click)="filterStreamerDialog('mature'); $event.stopPropagation()" onclick="this.blur()">
+                <mat-icon [ngClass]="activeFilters['mature'] ? 'filter-icon-active' : 'filter-icon' ">filter_list</mat-icon>
+            </button>
+        </th>
         <td mat-cell *matCellDef="let element">{{element.mature}}</td>
     </ng-container>
     <ng-container matColumnDef='language'>
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Language</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            Language
+            <button mat-icon-button class="example-icon add-icon" aria-label="filter data button" (click)="filterStreamerDialog('language'); $event.stopPropagation()" onclick="this.blur()">
+                <mat-icon [ngClass]="activeFilters['language'] ? 'filter-icon-active' : 'filter-icon' ">filter_list</mat-icon>
+            </button>
+        </th>
         <td mat-cell *matCellDef="let element">{{element.language}}</td>
     </ng-container>
     <ng-container matColumnDef='edit'>
@@ -57,7 +117,7 @@
         </td>
     </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="columns"></tr>
+    <tr mat-header-row *matHeaderRowDef="columns; sticky: true"></tr>
     <tr mat-row *matRowDef="let row; columns: columns;"></tr>
 </table>
 <mat-paginator
