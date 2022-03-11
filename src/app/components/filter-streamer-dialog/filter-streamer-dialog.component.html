@@ -1,1 +1,37 @@
-<p>filter-streamer-dialog works!</p>
+<div class="form-wrapper">
+    <div class="form-header">
+      <div class="item">
+        <mat-icon color="primary">filter_list</mat-icon>
+      </div>
+      <div class="item grow">
+        Filter streamers
+      </div>
+    </div>  
+    <div class="form-content">
+        <form mat-dialog-content (ngSubmit)="closeDialog()" [formGroup]="form" style="margin: 0; padding: 0; overflow: visible;">
+            <div *ngIf="formType=='string'">
+                <mat-form-field appearance="fill" class="full-width">
+                    <mat-label>{{prop_name}}</mat-label>
+                    <input matInput type="text" placeholder={{prop_name}} formControlName="string_data">
+                </mat-form-field>
+            </div>
+
+            <div *ngIf="formType=='number'">
+                <mat-form-field appearance="fill" class="full-width">
+                    <mat-label>{{prop_name}}</mat-label>
+                    <input matInput type="number" placeholder={{prop_name}} formControlName="number_data">
+                </mat-form-field> 
+            </div>
+
+            <div *ngIf="formType=='bool'">
+                <mat-checkbox formControlName="bool_data" style="width: 100%; display: inline-flex; align-items: center; flex-direction: column;">{{prop_name}}</mat-checkbox>
+            </div>
+        </form>
+
+
+    <mat-dialog-actions align="end">
+      <button mat-button [mat-dialog-close]="undefined">Cancel</button>
+      <button mat-flat-button (click)="closeDialog()" color="primary">Filter</button>
+    </mat-dialog-actions>
+  </div>
+</div>
