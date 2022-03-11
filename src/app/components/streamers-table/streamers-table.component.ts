@@ -8,6 +8,7 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { tap } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { FilterStreamerDialogComponent } from '../filter-streamer-dialog/filter-streamer-dialog.component';
+import { EditStreamerDialogComponent } from '../edit-streamer-dialog/edit-streamer-dialog.component';
 
 @Component({
   selector: 'app-streamers-table',
@@ -117,7 +118,25 @@ export class StreamersTableComponent implements OnInit {
         (_)=>{}
       );
     }
+  }
 
+  editStreamerDialog(streamerData: Streamer){
+    const dialogRef = this.dialog.open(EditStreamerDialogComponent,
+      {
+        maxWidth: '1000px',
+        width: '80vw',
+        autoFocus: false,
+        panelClass: 'custom-dialog-container',
+        data: streamerData
+      }
+    );
+    dialogRef.afterClosed().subscribe(result => {
+      if(result) {
+        console.log(result);
+        //TODO: check if works with backend!
+        // this.dataService.editStreamer(result);
+      }
+    });
   }
 
   filterStreamerDialog(prop_name: string){

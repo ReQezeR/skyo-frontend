@@ -1,1 +1,94 @@
-<p>edit-streamer-dialog works!</p>
+<div class="form-wrapper">
+    <div class="form-header">
+      <div class="item">
+        <mat-icon color="primary">edit</mat-icon>
+      </div>
+      <div class="item grow">
+        Edit streamer
+      </div>
+    </div>  
+    <div class="form-content">
+      <form mat-dialog-content (ngSubmit)="closeDialog()" [formGroup]="form" style="margin: 0; padding: 0;">
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Name</mat-label>
+          <input matInput type="text" placeholder="Name" formControlName="name">
+          <mat-error *ngIf="form.controls['name'].hasError('required')">
+              Streamer name is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      
+        <mat-form-field appearance="fill" style="width: 49%; margin-right: 1%;">
+          <mat-label>Watch time</mat-label>
+          <input matInput type="number" placeholder="Watch time" formControlName="watch_time">
+          <mat-error *ngIf="form.controls['watch_time'].hasError('required')">
+              Streamer watch time is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" style="width: 49%; margin-left: 1%;">
+            <mat-label>Stream time</mat-label>
+            <input matInput type="number" placeholder="Stream time" formControlName="stream_time">
+            <mat-error *ngIf="form.controls['stream_time'].hasError('required')">
+                Streamer stream time is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" style="width: 49%; margin-right: 1%;">
+            <mat-label>Peak viewers</mat-label>
+            <input matInput type="number" placeholder="Peak viewers" formControlName="peak_viewers">
+            <mat-error *ngIf="form.controls['peak_viewers'].hasError('required')">
+                Streamer peak viewers is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" style="width: 49%; margin-left: 1%;">
+            <mat-label>Average viewers</mat-label>
+            <input matInput type="number" placeholder="Average viewers" formControlName="average_viewers">
+            <mat-error *ngIf="form.controls['average_viewers'].hasError('required')">
+                Streamer average viewers is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" style="width: 49%; margin-right: 1%;">
+            <mat-label>Followers</mat-label>
+            <input matInput type="number" placeholder="Followers" formControlName="followers">
+            <mat-error *ngIf="form.controls['followers'].hasError('required')">
+                Streamer followers is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" style="width: 49%; margin-left: 1%;">
+            <mat-label>Followers gained</mat-label>
+            <input matInput type="number" placeholder="Followers gained" formControlName="followers_gained">
+            <mat-error *ngIf="form.controls['followers_gained'].hasError('required')">
+                Streamer followers gained is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" style="width: 49%; margin-right: 1%;">
+            <mat-label>Views gained</mat-label>
+            <input matInput type="number" placeholder="Views gained" formControlName="views_gained">
+            <mat-error *ngIf="form.controls['views_gained'].hasError('required')">
+                Streamer views gained is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" style="width: 49%; margin-left: 1%;">
+            <mat-label>Language</mat-label>
+            <input matInput type="text" placeholder="Language" formControlName="language">
+            <mat-error *ngIf="form.controls['language'].hasError('required')">
+                Streamer followers gained is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-checkbox formControlName="partnered" style="padding: 1rem 0; width: 50%; display: inline-flex; align-items: center; flex-direction: column;">Partnered</mat-checkbox>
+
+        <mat-checkbox formControlName="mature" style="padding: 1rem 0; width: 50%; display: inline-flex; align-items: center; flex-direction: column;">Mature</mat-checkbox>
+
+      </form>
+      <mat-dialog-actions align="end">
+        <button mat-button [mat-dialog-close]="undefined">Cancel</button>
+        <button mat-flat-button (click)="closeDialog()" color="primary">Edit</button>
+      </mat-dialog-actions>
+    </div>
+  </div>

@@ -111,7 +111,7 @@
     <ng-container matColumnDef='edit'>
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let element">
-            <button mat-icon-button aria-label="Edit data button">
+            <button mat-icon-button aria-label="Edit data button" (click)="editStreamerDialog(element); $event.stopPropagation()" onclick="this.blur()">
                 <mat-icon>edit</mat-icon>
             </button>
         </td>
