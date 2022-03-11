@@ -23,6 +23,7 @@ import { StreamersTableComponent } from './components/streamers-table/streamers-
 import { NewStreamerDialogComponent } from './components/new-streamer-dialog/new-streamer-dialog.component';
 import { EditStreamerDialogComponent } from './components/edit-streamer-dialog/edit-streamer-dialog.component';
 import { FilterStreamerDialogComponent } from './components/filter-streamer-dialog/filter-streamer-dialog.component';
+import { StatsComponent } from './pages/stats/stats.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { FilterStreamerDialogComponent } from './components/filter-streamer-dial
     StreamersTableComponent,
     NewStreamerDialogComponent,
     EditStreamerDialogComponent,
-    FilterStreamerDialogComponent
+    FilterStreamerDialogComponent,
+    StatsComponent
   ],
   imports: [
     BrowserModule,
