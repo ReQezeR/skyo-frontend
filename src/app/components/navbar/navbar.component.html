@@ -2,6 +2,8 @@
     <mat-toolbar color="primary">
         <mat-icon>analytics</mat-icon>
       <span style="padding-left: 1rem;">Skyo</span>
+      <button mat-button style="margin-left: 4rem;" [routerLink]="['/home']">Home</button>
+      <button mat-button  [routerLink]="['/stats']">Stats</button>
       <span class="example-spacer"></span>
       <button mat-icon-button class="example-icon add-icon" aria-label="add data button" (click)="addStreamerDialog()">
         <mat-icon>add</mat-icon>
