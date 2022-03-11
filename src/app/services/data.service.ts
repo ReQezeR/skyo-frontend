@@ -67,7 +67,16 @@ export class DataService {
     this.streamersSubject.next(data);
   }
 
-  filterStreamers(filters: any){
-    //TODO: 
+  filterStreamers(page: number, size?: number, filter: string = ""){
+    return this.http.get<any>('/api/object?'+filter+'page='+page+'&size='+size).pipe(map(result => {
+      this.streamers = [];
+      result.items.forEach((streamer: any)=>{
+        this.streamers.push(new Streamer(streamer))
+      })
+      this.totalStreamersNumber = result.total
+      
+      this.updateStreamers(this.streamers);
+      return this.streamers;
+    }));
   }
 }
