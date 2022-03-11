@@ -33,23 +33,4 @@ export class NavbarComponent implements OnInit {
       }
     });
   }
-
-
-  filterStreamerDialog(){
-    const dialogRef = this.dialog.open(FilterStreamerDialogComponent,
-      {
-        maxWidth: '1000px',
-        width: '80vw',
-        autoFocus: false,
-        panelClass: 'custom-dialog-container',
-      }
-    );
-    dialogRef.afterClosed().subscribe(result => {
-      // console.log(typeof(result));
-      if(result) {
-        // console.log(result);
-        this.dataService.filterStreamers(result);
-      }
-    });
-  }
 }
