@@ -22,6 +22,9 @@ export class DataService {
   private streamers: Streamer[] = [];
   public totalStreamersNumber = 0;
 
+  lastPage = 0;
+  lastSize = 25;
+
 
   constructor(private http: HttpClient) {
     this.streamersObservable = this.streamersSubject.asObservable();
@@ -30,7 +33,15 @@ export class DataService {
     );
   }
 
+  reloadStreamers(){
+    return this.getStreamers(this.lastPage, this.lastSize);
+  }
+
   getStreamers(page: number, size?: number){
+    this.lastPage = page;
+    if(size){
+      this.lastSize = size;
+    }
     return this.http.get<any>('/api/objects?page='+page+'&size='+size).pipe(map(result => {
       this.streamers = [];
       result.items.forEach((streamer: any)=>{
@@ -44,22 +55,20 @@ export class DataService {
   }
 
   addStreamer(streamer: Streamer){
-    console.log(JSON.parse(JSON.stringify(streamer)));
-
-    this.http.put<any>('/api/object', JSON.parse(JSON.stringify(streamer))).subscribe(result => {
+    return this.http.put<any>('/api/object', JSON.parse(JSON.stringify(streamer))).pipe(map(result => {
       console.log(result)
       const streamer = new Streamer(result);
       // this.tasks[columnId].push(task);
       // this.tasksSubject.next(this.tasks);
       return streamer;
-    });
+    }));
   }
 
   editStreamer(streamer: Streamer){
-    this.http.post<any>('/api/object', streamer).subscribe(result => {
+    return this.http.post<any>('/api/object/'+streamer.id, JSON.parse(JSON.stringify(streamer))).pipe(map(result => {
       const streamer = new Streamer(result);
       return streamer;
-    });
+    }));
   }
 
 
@@ -68,6 +77,10 @@ export class DataService {
   }
 
   filterStreamers(page: number, size?: number, filter: string = ""){
+    this.lastPage = page;
+    if(size){
+      this.lastSize = size;
+    }
     return this.http.get<any>('/api/object?'+filter+'page='+page+'&size='+size).pipe(map(result => {
       this.streamers = [];
       result.items.forEach((streamer: any)=>{
