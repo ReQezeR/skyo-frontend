@@ -26,10 +26,13 @@ export class NavbarComponent implements OnInit {
       }
     );
     dialogRef.afterClosed().subscribe(result => {
-      // console.log(typeof(result));
       if(result) {
         console.log(result);
-        this.dataService.addStreamer(result);
+        this.dataService.addStreamer(result).subscribe(
+          data=>{
+            this.dataService.reloadStreamers().subscribe();
+          }
+        );
       }
     });
   }
