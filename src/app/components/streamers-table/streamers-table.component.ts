@@ -133,8 +133,9 @@ export class StreamersTableComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if(result) {
         console.log(result);
-        //TODO: check if works with backend!
-        // this.dataService.editStreamer(result);
+        this.dataService.editStreamer(result).subscribe(data=>{
+          this.loadData();
+        });
       }
     });
   }
