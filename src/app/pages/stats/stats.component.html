@@ -1,1 +1,25 @@
-<p>stats works!</p>
+<div class="stats" *ngIf="statsData">
+  <div class="chart-container" *ngFor="let chart of statsData">
+    <h1>{{chart.title}}</h1>
+    <ngx-charts-pie-chart *ngIf="chart.title == 'Partnered' || chart.title == 'Mature'; else barChart"
+    [view]="[600, 400]"
+    [results]="chart.bars"
+    [gradient]="true"
+    [customColors]="pieColors"
+    [legend]="true">
+    </ngx-charts-pie-chart>
+    <ng-template #barChart>
+      <ngx-charts-bar-vertical
+      [view]="[600, 400]"
+      [results]="chart.bars"
+      scheme="vivid"
+      [xAxis]="false"
+      [yAxis]="true"
+      [showYAxisLabel]="true"
+      [yAxisLabel]="'Count'"
+      [gradient]="true"
+      >
+      </ngx-charts-bar-vertical>
+    </ng-template>
+  </div>
+</div>

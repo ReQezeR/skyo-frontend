@@ -21,9 +21,9 @@ export class DataService {
   public streamersObservable = new Observable<any>();
   private streamers: Streamer[] = [];
   public totalStreamersNumber = 0;
-  
 
-  constructor(private http: HttpClient) { 
+
+  constructor(private http: HttpClient) {
     this.streamersObservable = this.streamersSubject.asObservable();
     this.getStreamers(1, 25).subscribe(
       (data)=>{}
@@ -37,7 +37,7 @@ export class DataService {
         this.streamers.push(new Streamer(streamer))
       })
       this.totalStreamersNumber = result.total
-      
+
       this.updateStreamers(this.streamers);
       return this.streamers;
     }));
@@ -45,7 +45,7 @@ export class DataService {
 
   addStreamer(streamer: Streamer){
     console.log(JSON.parse(JSON.stringify(streamer)));
-    
+
     this.http.put<any>('/api/object', JSON.parse(JSON.stringify(streamer))).subscribe(result => {
       console.log(result)
       const streamer = new Streamer(result);
@@ -74,9 +74,13 @@ export class DataService {
         this.streamers.push(new Streamer(streamer))
       })
       this.totalStreamersNumber = result.total
-      
+
       this.updateStreamers(this.streamers);
       return this.streamers;
     }));
+  }
+
+  getStats() {
+    return this.http.get<any>('api/stats');
   }
 }

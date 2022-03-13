@@ -16,6 +16,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
+import {MatGridListModule} from '@angular/material/grid-list';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 
@@ -24,6 +25,7 @@ import { NewStreamerDialogComponent } from './components/new-streamer-dialog/new
 import { EditStreamerDialogComponent } from './components/edit-streamer-dialog/edit-streamer-dialog.component';
 import { FilterStreamerDialogComponent } from './components/filter-streamer-dialog/filter-streamer-dialog.component';
 import { StatsComponent } from './pages/stats/stats.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,9 @@ import { StatsComponent } from './pages/stats/stats.component';
     MatPaginatorModule,
     MatDialogModule,
     MatInputModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatGridListModule,
+    NgxChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
