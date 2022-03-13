@@ -48,6 +48,7 @@ export class EditStreamerDialogComponent{
     if (this.form.valid) {
       this.dialogRef.close(new Streamer(
         {
+          id: this.streamerData.id,
           channel: this.form.controls['name'].value, 
           watch_time: this.form.controls['watch_time'].value,
           stream_time: this.form.controls['stream_time'].value,
