@@ -1,0 +1,17 @@
+<div class="form-wrapper">
+    <div class="form-header">
+      <div class="item">
+        <mat-icon color="primary">upload_file</mat-icon>
+      </div>
+      <div class="item grow">
+        Upload csv
+      </div>
+    </div>  
+    <div class="form-content">
+        <input type="file" placeholder="File" id="file" (change)="onChange($event)">
+        <mat-dialog-actions align="end">
+            <button mat-button [mat-dialog-close]="undefined">Cancel</button>
+            <button mat-flat-button (click)="closeDialog()" color="primary">Upload</button>
+        </mat-dialog-actions>
+    </div>
+  </div>
