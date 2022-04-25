@@ -7,6 +7,6 @@ RUN npm run build
 FROM nginx:latest
 COPY --from=build /usr/local/app/dist/skyo-frontend /usr/share/nginx/html
 COPY nginx.conf  /etc/nginx/sites-available/default
-ENV API_URL="#"
+ARG API_URL="#"
 RUN envsubst < /etc/nginx/sites-available/default | tee /etc/nginx/sites-available/default
 EXPOSE 80
