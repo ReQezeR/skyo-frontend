@@ -42,6 +42,9 @@ export class DataService {
     if(size){
       this.lastSize = size;
     }
+    if(page<=0){
+      page = 1;
+    }
     return this.http.get<any>('/api/objects?page='+page+'&size='+size).pipe(map(result => {
       this.streamers = [];
       result.items.forEach((streamer: any)=>{
@@ -56,7 +59,7 @@ export class DataService {
 
   addStreamer(streamer: Streamer){
     return this.http.put<any>('/api/object', JSON.parse(JSON.stringify(streamer))).pipe(map(result => {
-      console.log(result)
+      // console.log(result)
       const streamer = new Streamer(result);
       // this.tasks[columnId].push(task);
       // this.tasksSubject.next(this.tasks);
@@ -81,6 +84,9 @@ export class DataService {
     if(size){
       this.lastSize = size;
     }
+    if(page<=0){
+      page = 1;
+    }
     return this.http.get<any>('/api/object?'+filter+'page='+page+'&size='+size).pipe(map(result => {
       this.streamers = [];
       result.items.forEach((streamer: any)=>{
@@ -94,6 +100,13 @@ export class DataService {
   }
 
   getStats() {
-    return this.http.get<any>('api/stats');
+    return this.http.get<any>('/api/stats');
+  }
+
+
+  uploadCSV(data: any){
+    return this.http.post<any>('/api/csv', data).pipe(map(result => {
+      return result;
+    }));
   }
 }

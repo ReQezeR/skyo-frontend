@@ -73,8 +73,7 @@ export class StreamersTableComponent implements OnInit {
   ngOnInit(): void {
     this.dataService.streamersObservable.subscribe(
       (data)=>{
-        console.log("data");
-        
+        // console.log("data");
         this.streamers = data;
         this.totalRows = this.dataService.totalStreamersNumber;
         this.dataSource = new MatTableDataSource(this.streamers);
@@ -99,20 +98,31 @@ export class StreamersTableComponent implements OnInit {
   }
 
   pageChanged(event: PageEvent) {
-    console.log({ event });
+    // console.log({ event });
     this.pageSize = event.pageSize;
     this.currentPage = event.pageIndex;
     
     this.loadData();
   }
 
-  loadData(){
+  loadData(reload:boolean = false){
     this.isLoading = true;
     if(this.activeFilter != ""){
       let filter = this.activeFilter+"="+this.activeFilterValue+"&";
       this.dataService.filterStreamers(this.currentPage+1, this.pageSize, filter).subscribe(
         (_)=>{}
       );
+    }else if(reload){
+      if(this.currentPage < 1){
+        this.dataService.getStreamers(this.currentPage+1, this.pageSize).subscribe(
+          (_)=>{}
+        );
+      }
+      else{
+        this.dataService.getStreamers(this.currentPage, this.pageSize).subscribe(
+          (_)=>{}
+        );
+      }
     }else{
       this.dataService.getStreamers(this.currentPage+1, this.pageSize).subscribe(
         (_)=>{}
@@ -132,9 +142,9 @@ export class StreamersTableComponent implements OnInit {
     );
     dialogRef.afterClosed().subscribe(result => {
       if(result) {
-        console.log(result);
+        // console.log(result);
         this.dataService.editStreamer(result).subscribe(data=>{
-          this.loadData();
+          this.loadData(true);
         });
       }
     });

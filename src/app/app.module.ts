@@ -26,6 +26,8 @@ import { EditStreamerDialogComponent } from './components/edit-streamer-dialog/e
 import { FilterStreamerDialogComponent } from './components/filter-streamer-dialog/filter-streamer-dialog.component';
 import { StatsComponent } from './pages/stats/stats.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { UploadCsvDialogComponent } from './components/upload-csv-dialog/upload-csv-dialog.component';
+import { E404Component } from './components/e404/e404.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     NewStreamerDialogComponent,
     EditStreamerDialogComponent,
     FilterStreamerDialogComponent,
-    StatsComponent
+    StatsComponent,
+    UploadCsvDialogComponent,
+    E404Component
   ],
   imports: [
     BrowserModule,

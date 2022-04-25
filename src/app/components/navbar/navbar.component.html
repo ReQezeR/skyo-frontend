@@ -5,6 +5,9 @@
       <button mat-button style="margin-left: 4rem;" [routerLink]="['/home']">Home</button>
       <button mat-button  [routerLink]="['/stats']">Stats</button>
       <span class="example-spacer"></span>
+      <button mat-icon-button class="example-icon add-icon" aria-label="upload csv button" (click)="uploadCSVDialog()">
+        <mat-icon>upload_file</mat-icon>
+      </button>
       <button mat-icon-button class="example-icon add-icon" aria-label="add data button" (click)="addStreamerDialog()">
         <mat-icon>add</mat-icon>
       </button>
