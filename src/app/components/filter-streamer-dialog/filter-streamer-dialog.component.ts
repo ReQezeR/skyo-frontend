@@ -26,15 +26,15 @@ export class FilterStreamerDialogComponent{
 
   resetData(prop_name: string){
     if(number_props.findIndex((value)=>value==prop_name)!=-1){
-      console.log("number");
+      // console.log("number");
       this.formType='number';
       
     }else if(string_props.findIndex((value)=>value==prop_name)!=-1){
-      console.log("string");
+      // console.log("string");
       this.formType='string';
 
     }else if(bool_props.findIndex((value)=>value==prop_name)!=-1){
-      console.log("bool");
+      // console.log("bool");
       this.formType='bool';
 
     }
